@@ -1,5 +1,6 @@
-import { Controller, Get, Param } from '@nestjs/common';
+import { Body, Controller, Get, Param, Post } from '@nestjs/common';
 import { FilekitaService } from './filekita.service';
+import { FileKitaDTO } from './filekita.dto';
 
 @Controller('filekita')
 export class FilekitaController {
@@ -10,6 +11,11 @@ export class FilekitaController {
     @Get()
     lihatOutput(){
         return this.FileKitaService.showAll();
+    }
+
+    @Post()
+    inputData(@Body() data: FileKitaDTO){
+        return this.FileKitaService.create(data);
     }
 
     @Get(':id')
