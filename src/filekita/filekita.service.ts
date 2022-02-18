@@ -16,7 +16,7 @@ export class FilekitaService {
     }
 
     async lihatDetailData(id){
-        return 'ini adalah halaman detail dengan id: ' + id;
+        return await this.FileKitaRepository.find({where:{id}});
     }
 
     async create(data: FileKitaDTO){
@@ -24,5 +24,26 @@ export class FilekitaService {
         await this.FileKitaRepository.save(fileKitaNew);
 
         return fileKitaNew;
+    }
+
+    async editData(id, data: Partial<FileKitaDTO>){
+        await this.FileKitaRepository.update({id}, data);
+        return await this.FileKitaRepository.find({where:{id}});
+    }
+
+    async deleteData(id){
+        var hapus = await this.FileKitaRepository.delete({id});
+        if (hapus['affected'] != 0) {
+            var data = {
+                'status' : 200,
+                'data' : 'Data berhasil di hapus'
+            }
+        } else {
+            var data = {
+                'status' : 404,
+                'data' : 'Data tidak ditemukan'
+            }
+        }
+        return (data);
     }
 }
