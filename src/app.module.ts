@@ -2,9 +2,10 @@ import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { FieKitaModule } from './filekita/filekita.module';
+import { FileKitaModule } from './filekita/filekita.module';
 import { APP_FILTER } from '@nestjs/core';
 import { HttpErrorFilter } from './shared/http-error.filter';
+import { UsersModule } from './users/users.module';
 
 @Module({
   imports: [
@@ -20,7 +21,8 @@ import { HttpErrorFilter } from './shared/http-error.filter';
       logging: true,
       entities: ['src/**/*.entity.ts','dist/**/*.entity.js'],
     }),
-    FieKitaModule,
+    FileKitaModule,
+    UsersModule,
   ],
   controllers: [AppController],
   providers: [

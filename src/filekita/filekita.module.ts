@@ -9,4 +9,4 @@ import { FilekitaService } from './filekita.service';
     controllers: [FilekitaController],
     providers: [FilekitaService]
 })
-export class FieKitaModule {}
+export class FileKitaModule {}
